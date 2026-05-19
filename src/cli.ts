@@ -5,13 +5,13 @@ import { renderSummary } from './summary.js';
 import type { CompareFormat } from './types.js';
 
 type CliOptions = {
-  actual?: string;
-  golden?: string;
-  config?: string;
-  accept?: boolean;
-  format?: CompareFormat;
-  summaryJson?: boolean;
-  help?: boolean;
+  actual: string | undefined;
+  golden: string | undefined;
+  config: string | undefined;
+  accept: boolean;
+  format: CompareFormat;
+  summaryJson: boolean;
+  help: boolean;
 };
 
 const version = '0.1.0';
@@ -45,13 +45,14 @@ export async function main(argv = process.argv.slice(2)): Promise<number> {
     return 2;
   }
 
-  const result = await compareGolden({
+  const compareOptions = {
     actualPath: options.actual,
     goldenPath: options.golden,
-    configPath: options.config,
     accept: options.accept,
     format: options.format
-  });
+  };
+
+  const result = await compareGolden(options.config ? { ...compareOptions, configPath: options.config } : compareOptions);
 
   if (options.summaryJson) {
     console.log(JSON.stringify(result.summary, null, 2));
