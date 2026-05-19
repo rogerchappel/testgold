@@ -1,79 +1,48 @@
 # Contributing
 
-Thanks for helping improve `testgold`.
+Thanks for helping improve TestGold.
 
-This project values small, reviewable contributions with clear verification.
+## Local Setup
 
-## Issues
+npm install
+npm run build
 
-Before opening an issue:
+## Development Checks
 
-- Search existing issues.
-- Confirm the issue applies to `testgold`.
-- Include enough context for maintainers to understand or reproduce the request.
+Run the relevant targeted check while developing, then run the full validation gate before opening a pull request:
 
-Bug reports should include:
+- npm run check
+- npm test
+- npm run smoke
+- bash scripts/validate.sh
 
-- What happened.
-- What you expected.
-- Steps to reproduce.
-- Relevant logs, screenshots, or files.
-- The smallest verification step that demonstrates the issue.
+## Golden Fixture Rules
 
-Feature requests should include:
-
-- The use case.
-- Why the current project does not solve it.
-- Risks or compatibility concerns.
-- Suggested files or behavior that may need to change.
+- Keep fixtures readable.
+- Normalize noisy values instead of committing machine-specific output.
+- Use --accept only when the expected output intentionally changed.
+- Include the resulting diff or summary in the pull request when goldens change.
 
 ## Pull Requests
 
-Pull requests should:
+PRs should include:
 
-- Focus on one reviewable intent.
-- Use a branch.
-- Follow Conventional Commits.
-- Include tests or verification appropriate to the change.
-- Update documentation when behavior or usage changes.
-- Avoid unrelated formatting or dependency churn.
-- Avoid secrets, private contact details, and project-specific sensitive information.
+- summary of the change
+- verification performed
+- risk level
+- rollback plan
+- any follow-up work
 
-## Review Pack
+## Commit Style
 
-Use this format for meaningful changes:
+Use Conventional Commits:
 
-```md
-## Review Pack
-Repo:
-Branch:
-PR:
-Task:
-Status: done / blocked / needs review
-Summary:
-Commits:
-Files changed:
-Verification:
-Risk level:
-Rollback plan:
-Human decision needed:
-Next recommended task:
-```
+- feat: add useful behavior
+- fix: handle edge case
+- docs: update usage
+- test: cover parser behavior
+- chore: refresh tooling
 
-## Verification
+## Security
 
-Every contribution should include verification.
-
-Examples:
-
-- Documentation: inspect rendered Markdown or review the diff.
-- Tests: run the targeted test command.
-- Types: run the project typecheck.
-- Build: run the smallest build command that covers the change.
-- Manual QA: provide exact steps and observed result.
-
-If verification cannot be run, explain why and provide the exact command maintainers should run.
-
-## Maintainer Review
-
-Maintainers may request narrower scope, clearer verification, additional tests, or safer defaults before merging.
+Do not report security issues in public issues. See SECURITY.md.
