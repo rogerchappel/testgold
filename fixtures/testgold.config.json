@@ -1,0 +1,18 @@
+{
+  "scrubbers": [
+    "iso-date",
+    "epoch-ms",
+    "tmp-path",
+    "home-path",
+    "cwd",
+    "windows-path",
+    "uuid",
+    {
+      "name": "run-id",
+      "pattern": "run-[0-9]+",
+      "replacement": "run-<ID>"
+    }
+  ],
+  "jsonMode": "sort-arrays",
+  "newline": "lf"
+}
