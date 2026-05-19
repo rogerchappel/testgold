@@ -1,0 +1,3 @@
+cache=/tmp/testgold-49281/output.json
+home=/Users/roger/.cache/testgold
+windows=C:\Users\roger\AppData\Local\Temp\testgold\out.txt

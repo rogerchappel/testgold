@@ -1,0 +1,3 @@
+cache=<TMP_PATH>
+home=<HOME>/.cache/testgold
+windows=<TMP_PATH>
