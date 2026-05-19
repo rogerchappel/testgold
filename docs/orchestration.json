@@ -1,0 +1,34 @@
+{
+  "project": "testgold",
+  "repository": "rogerchappel/testgold",
+  "defaultBranch": "main",
+  "packageManager": "npm",
+  "runtime": "node>=20",
+  "description": "Framework-agnostic golden fixture manager for deterministic CLI and library tests.",
+  "topics": [
+    "golden-files",
+    "fixtures",
+    "snapshot-testing",
+    "cli-testing",
+    "approval-tests",
+    "typescript",
+    "nodejs"
+  ],
+  "commands": {
+    "install": "npm install",
+    "check": "npm run check",
+    "test": "npm test",
+    "build": "npm run build",
+    "smoke": "npm run smoke",
+    "validate": "bash scripts/validate.sh"
+  },
+  "smoke": {
+    "command": "node dist/cli.js compare --actual fixtures/text/actual.txt --golden fixtures/text/expected.txt --config fixtures/testgold.config.json --summary-json",
+    "expectedStatus": "passed"
+  },
+  "privacy": {
+    "telemetry": false,
+    "networkByDefault": false,
+    "secretsRequired": false
+  }
+}
