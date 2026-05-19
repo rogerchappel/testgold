@@ -1,0 +1,3 @@
+pid=<PID>
+created=<ISO_DATE>
+file=<TMP_PATH>
