@@ -1,58 +1,32 @@
 # Security Policy
 
+TestGold is a local-first CLI. It does not require secrets, does not make network calls during normal use, and does not collect telemetry.
+
 ## Supported Versions
 
-Replace this section with the supported versions for `testgold`.
-
-Example:
-
-```md
 | Version | Supported |
-| --- | --- |
-| .x | Yes |
-| < .0 | No |
-```
-
-If the project does not publish versioned releases yet, say that clearly.
+| ------- | --------- |
+| 0.x     | Yes       |
 
 ## Reporting a Vulnerability
 
-Please do not report suspected vulnerabilities in public issues, pull requests, or discussions.
+Report suspected vulnerabilities privately to the maintainers. Do not open a public issue until maintainers have had time to investigate.
 
-Ask maintainers for the private security reporting path before sharing details.
+Include:
 
-If no private reporting path exists yet, ask maintainers through public project channels for a private reporting path. Do not include exploit details, secrets, personal data, or sensitive technical details in public messages.
+- affected version or commit
+- reproduction steps
+- expected and actual behavior
+- impact assessment if known
+- suggested fix if available
 
-## What to Include
+## Security-Relevant Areas
 
-When a private reporting path is available, include:
+- path handling for --actual, --golden, and --config
+- explicit write behavior behind --accept
+- regular-expression scrubber behavior
+- package and release automation
 
-- A clear description of the issue.
-- Affected versions, files, packages, workflows, or configuration.
-- Steps to reproduce, proof of concept, or attack scenario when safe to share.
-- Potential impact.
-- Suggested mitigation, if known.
+## Privacy
 
-## Response Expectations
-
-Maintainers review good-faith reports as capacity allows.
-
-Do not imply paid support, guaranteed response times, guaranteed fixes, or service-level agreements unless `testgold` explicitly provides them.
-
-## Scope
-
-In scope:
-
-- Vulnerabilities in testgold.
-- Insecure default configuration shipped by this project.
-- CI, release, or dependency guidance maintained by this project.
-
-Out of scope:
-
-- General support requests.
-- Requests for guaranteed maintenance timelines.
-- Issues in unrelated downstream projects.
-
-## Disclosure
-
-Coordinate disclosure with maintainers before publishing vulnerability details.
+Fixture contents stay on the local machine unless a user commits or shares them. TestGold does not upload fixture data.
