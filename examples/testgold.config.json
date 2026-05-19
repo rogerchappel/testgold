@@ -1,0 +1,12 @@
+{
+  "scrubbers": [
+    "iso-date",
+    "tmp-path",
+    {
+      "name": "pid",
+      "pattern": "pid=[0-9]+",
+      "replacement": "pid=<PID>"
+    }
+  ],
+  "jsonMode": "sort-keys"
+}
