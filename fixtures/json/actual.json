@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "name": "beta",
+      "id": 2
+    },
+    {
+      "id": 1,
+      "name": "alpha"
+    }
+  ],
+  "ok": true,
+  "generatedAt": "2026-05-19T08:13:42.123Z"
+}

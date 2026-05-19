@@ -1,0 +1,14 @@
+{
+  "generatedAt": "<ISO_DATE>",
+  "items": [
+    {
+      "id": 1,
+      "name": "alpha"
+    },
+    {
+      "id": 2,
+      "name": "beta"
+    }
+  ],
+  "ok": true
+}
