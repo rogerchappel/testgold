@@ -7,7 +7,7 @@ const execFileAsync = promisify(execFile);
 
 test('CLI returns JSON summary for passing fixture', async () => {
   const result = await execFileAsync('node', [
-    'dist/cli.js',
+    'dist/src/cli.js',
     'compare',
     '--actual',
     'fixtures/text/actual.txt',
