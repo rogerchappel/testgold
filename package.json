@@ -14,7 +14,16 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist", "examples", "fixtures", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "examples",
+    "fixtures",
+    "README.md",
+    "LICENSE",
+    "SECURITY.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "check": "tsc -p tsconfig.json --noEmit",
@@ -23,7 +32,13 @@
     "package:smoke": "npm pack --dry-run",
     "release:check": "npm run check && npm test && npm run smoke && npm run package:smoke"
   },
-  "keywords": ["golden-files", "fixtures", "snapshot-testing", "cli-testing", "approval-tests"],
+  "keywords": [
+    "golden-files",
+    "fixtures",
+    "snapshot-testing",
+    "cli-testing",
+    "approval-tests"
+  ],
   "author": "Roger Chappel",
   "license": "MIT",
   "engines": {
@@ -32,5 +47,13 @@
   "devDependencies": {
     "@types/node": "^22.10.2",
     "typescript": "^5.7.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rogerchappel/testgold.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rogerchappel/testgold/issues"
+  },
+  "homepage": "https://github.com/rogerchappel/testgold#readme"
 }
