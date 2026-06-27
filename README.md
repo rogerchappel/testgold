@@ -6,26 +6,36 @@ TestGold compares actual command or library output against readable golden files
 
 ## Install
 
+```sh
 npm install --save-dev testgold
+```
 
 For local development:
 
+```sh
 npm install
 npm run build
+```
 
 ## CLI
 
 Compare fixtures:
 
+```sh
 npx testgold compare --actual fixtures/text/actual.txt --golden fixtures/text/expected.txt --config fixtures/testgold.config.json
+```
 
 Write an intentional update:
 
+```sh
 npx testgold compare --actual fixtures/text/actual.txt --golden fixtures/text/expected.txt --config fixtures/testgold.config.json --accept
+```
 
 Print a machine-readable summary:
 
+```sh
 npx testgold compare --actual fixtures/json/actual.json --golden fixtures/json/expected.json --config fixtures/testgold.config.json --summary-json
+```
 
 ## Config
 
@@ -62,11 +72,19 @@ This repository includes fixtures for:
 
 ## Development
 
+```sh
 npm run check
 npm test
 npm run build
 npm run smoke
 bash scripts/validate.sh
+```
+
+## Limitations
+
+- Golden files are best for deterministic outputs; highly dynamic logs should be normalized with explicit scrubbers before comparison.
+- `--accept` should be treated as a review action, not an automatic CI repair step.
+- TestGold does not decide whether a changed fixture is correct; it makes the diff repeatable and reviewable.
 
 ## Attribution
 
