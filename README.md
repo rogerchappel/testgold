@@ -37,6 +37,14 @@ Print a machine-readable summary:
 npx testgold compare --actual fixtures/json/actual.json --golden fixtures/json/expected.json --config fixtures/testgold.config.json --summary-json
 ```
 
+Run the CLI output normalization walkthrough:
+
+```sh
+bash demo/run-cli-normalization.sh
+```
+
+See [docs/tutorials/review-cli-output.md](docs/tutorials/review-cli-output.md) for the fixture review flow and generated diff artifact.
+
 ## Config
 
 testgold.config.json is optional. Without it, TestGold applies conservative built-in scrubbers and sorts JSON object keys.
@@ -79,6 +87,7 @@ npm run build
 npm run smoke
 npm run package:smoke
 npm run release:check
+bash demo/run-cli-normalization.sh
 bash scripts/validate.sh
 ```
 
