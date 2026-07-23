@@ -7,6 +7,11 @@ format and uses semantic versioning when versioned releases are published.
 
 ## [Unreleased]
 
+### Fixed
+
+- Align the published CLI, JavaScript, and TypeScript entrypoints with the compiled package layout.
+- Verify release tarballs through a clean consumer install before publishing.
+
 ### Added
 
 - Initial project setup.

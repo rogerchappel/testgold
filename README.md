@@ -69,6 +69,18 @@ JSON modes:
 
 Import compareGolden from testgold and call it with actualPath, goldenPath, and optional configPath. The result includes status, diff, and a JSON-friendly summary.
 
+```ts
+import { compareGolden } from 'testgold';
+
+const result = await compareGolden({
+  actualPath: 'fixtures/text/actual.txt',
+  goldenPath: 'fixtures/text/expected.txt',
+  configPath: 'fixtures/testgold.config.json'
+});
+
+console.log(result.status);
+```
+
 ## Fixtures
 
 This repository includes fixtures for:
