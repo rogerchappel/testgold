@@ -65,6 +65,31 @@ JSON modes:
 - sort-keys: sort object keys recursively.
 - sort-arrays: sort object keys and arrays by stable JSON representation.
 
+Newline modes:
+
+- lf: convert CRLF line endings to LF (the default).
+- preserve: leave existing line endings unchanged.
+
+Custom scrubbers are objects with required string `pattern` and `replacement` fields. The optional `name` is descriptive, and optional `flags` uses JavaScript regular-expression flags (`g` is the default):
+
+```json
+{
+  "scrubbers": [
+    "iso-date",
+    {
+      "name": "run-id",
+      "pattern": "run-[0-9]+",
+      "replacement": "run-<ID>",
+      "flags": "gi"
+    }
+  ],
+  "jsonMode": "sort-keys",
+  "newline": "lf"
+}
+```
+
+Configuration is validated when loaded. A malformed root, invalid field type, unknown built-in scrubber, unsupported mode, or invalid custom regular expression stops the comparison and exits the CLI with a `Configuration error in <path>:` message. This prevents misspelled scrubber names from being treated as ordinary fixture differences.
+
 ## Library API
 
 Import compareGolden from testgold and call it with actualPath, goldenPath, and optional configPath. The result includes status, diff, and a JSON-friendly summary.
