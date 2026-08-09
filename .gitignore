@@ -1,0 +1,12 @@
+node_modules/
+
+# Local test and TypeScript build artifacts
+coverage/
+*.tsbuildinfo
+
+# npm-generated logs and package archives
+npm-debug.log*
+*.tgz
+
+# Local operating-system metadata
+.DS_Store
