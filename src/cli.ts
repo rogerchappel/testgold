@@ -61,8 +61,12 @@ export async function main(argv = process.argv.slice(2)): Promise<number> {
   }
 
   if (result.diff) {
-    console.log('');
-    process.stdout.write(result.diff);
+    if (options.summaryJson) {
+      process.stderr.write(result.diff);
+    } else {
+      console.log('');
+      process.stdout.write(result.diff);
+    }
   }
 
   return result.status === 'failed' ? 1 : 0;
