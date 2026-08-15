@@ -111,7 +111,7 @@ function printHelp(): void {
     '  --accept            Write the normalized actual output to the golden file.\\n' +
     '  --config <path>     JSON config with scrubbers and JSON normalization mode.\\n' +
     '  --format <mode>     auto, text, or json. Defaults to auto.\\n' +
-    '  --summary-json      Print a machine-readable JSON summary.\\n' +
+    '  --summary-json      Print only a machine-readable JSON summary to stdout.\\n' +
     '  -h, --help          Show this help.\\n' +
     '  -v, --version       Show version.\\n');
 }
