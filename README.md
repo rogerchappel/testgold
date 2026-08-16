@@ -37,6 +37,8 @@ Print a machine-readable summary:
 npx testgold compare --actual fixtures/json/actual.json --golden fixtures/json/expected.json --config fixtures/testgold.config.json --summary-json
 ```
 
+With `--summary-json`, stdout contains exactly one JSON value for both passing and failing comparisons, so callers can parse the complete stream. A mismatch still exits with status 1 and writes its unified diff to stderr. Without `--summary-json`, the human-readable summary and any unified diff are written to stdout; stderr remains available for errors.
+
 Run the CLI output normalization walkthrough:
 
 ```sh

@@ -41,8 +41,13 @@ export async function main(argv = process.argv.slice(2)) {
         console.log(renderSummary(result.summary));
     }
     if (result.diff) {
-        console.log('');
-        process.stdout.write(result.diff);
+        if (options.summaryJson) {
+            process.stderr.write(result.diff);
+        }
+        else {
+            console.log('');
+            process.stdout.write(result.diff);
+        }
     }
     return result.status === 'failed' ? 1 : 0;
 }
@@ -82,7 +87,7 @@ function printHelp() {
         '  --accept            Write the normalized actual output to the golden file.\\n' +
         '  --config <path>     JSON config with scrubbers and JSON normalization mode.\\n' +
         '  --format <mode>     auto, text, or json. Defaults to auto.\\n' +
-        '  --summary-json      Print a machine-readable JSON summary.\\n' +
+        '  --summary-json      Print only a machine-readable JSON summary to stdout.\\n' +
         '  -h, --help          Show this help.\\n' +
         '  -v, --version       Show version.\\n');
 }

@@ -9,6 +9,7 @@ format and uses semantic versioning when versioned releases are published.
 
 ### Fixed
 
+- Keep `--summary-json` stdout parseable on mismatches by writing the unified diff to stderr.
 - Align the published CLI, JavaScript, and TypeScript entrypoints with the compiled package layout.
 - Verify release tarballs through a clean consumer install before publishing.
 
