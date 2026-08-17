@@ -23,7 +23,7 @@
     "validate": "bash scripts/validate.sh"
   },
   "smoke": {
-    "command": "node dist/cli.js compare --actual fixtures/text/actual.txt --golden fixtures/text/expected.txt --config fixtures/testgold.config.json --summary-json",
+    "command": "node dist/src/cli.js compare --actual fixtures/text/actual.txt --golden fixtures/text/expected.txt --config fixtures/testgold.config.json --summary-json",
     "expectedStatus": "passed"
   },
   "privacy": {
