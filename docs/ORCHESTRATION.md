@@ -20,7 +20,7 @@
 
 ## Smoke Fixture
 
-node dist/cli.js compare --actual fixtures/text/actual.txt --golden fixtures/text/expected.txt --config fixtures/testgold.config.json --summary-json
+node dist/src/cli.js compare --actual fixtures/text/actual.txt --golden fixtures/text/expected.txt --config fixtures/testgold.config.json --summary-json
 
 Expected status: passed.
 
