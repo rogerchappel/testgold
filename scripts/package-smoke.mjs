@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { mkdtemp, rm, writeFile } from 'node:fs/promises';
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const consumerDirectory = await mkdtemp(path.join(tmpdir(), 'testgold-package-smoke-'));
+const packageMetadata = JSON.parse(await readFile(path.join(repositoryRoot, 'package.json'), 'utf8'));
 
 function run(command, args, options = {}) {
   const result = spawnSync(command, args, {
@@ -32,6 +33,7 @@ try {
     consumerDirectory
   ]);
   const [{ filename }] = JSON.parse(packOutput);
+  assert.equal(filename, `${packageMetadata.name}-${packageMetadata.version}.tgz`);
   const tarballPath = path.join(consumerDirectory, filename);
 
   run('npm', ['install', '--ignore-scripts', tarballPath]);
@@ -42,6 +44,7 @@ try {
     '.bin',
     process.platform === 'win32' ? 'testgold.cmd' : 'testgold'
   );
+  assert.equal(run(executable, ['--version']).trim(), packageMetadata.version);
   const fixtures = path.join(repositoryRoot, 'fixtures');
   const cliOutput = run(executable, [
     'compare',
