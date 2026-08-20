@@ -7,8 +7,12 @@ TestGold compares actual command or library output against readable golden files
 ## Install
 
 ```sh
-npm install --save-dev testgold
+npm install --save-dev github:rogerchappel/testgold
 ```
+
+The GitHub source is the supported install path until the first npm release is
+published. After that release, `npm install --save-dev testgold` will also be
+supported.
 
 For local development:
 
