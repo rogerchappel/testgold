@@ -8,6 +8,9 @@ on:
       - package.json
       - package-lock.json
       - .github/workflows/release*.yml
+      - README.md
+      - scripts/documented-install-smoke.mjs
+      - scripts/package-smoke.mjs
 
 permissions:
   contents: read
