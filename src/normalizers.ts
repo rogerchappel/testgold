@@ -28,7 +28,7 @@ const builtIns: Record<string, BuiltInRule> = {
     replacement: '<CWD>'
   },
   'windows-path': {
-    pattern: /[A-Z]:\\(?:[^\\\r\n]+\\)*[^\\\r\n]*/g,
+    pattern: /[A-Z]:\\(?:[^\\\s"'()[\]{}<>,;]+\\)*[^\\\s"'()[\]{}<>,;]*/g,
     replacement: '<WINDOWS_PATH>'
   },
   uuid: {
