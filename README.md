@@ -65,6 +65,9 @@ Built-in scrubbers:
 - windows-path
 - uuid
 
+The `windows-path` scrubber matches one non-whitespace path token. Quotes,
+brackets, commas, semicolons, and adjacent prose remain unchanged.
+
 JSON modes:
 
 - preserve: format parsed JSON without reordering.
