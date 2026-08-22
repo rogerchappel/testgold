@@ -13,3 +13,17 @@ test('normalizes CRLF line endings', async () => {
   const config = await loadConfig();
   assert.equal(normalizeText('one\r\ntwo', config), 'one\ntwo\n');
 });
+
+test('windows path scrubber preserves surrounding delimiters and prose', async () => {
+  const config = await loadConfig();
+  const cases: Array<[string, string]> = [
+    ['file=C:\\Users\\alice\\project\\out.txt', 'file=<WINDOWS_PATH>\n'],
+    ['file="C:\\Users\\alice\\project\\out.txt"', 'file="<WINDOWS_PATH>"\n'],
+    ['file=(C:\\Users\\alice\\project\\out.txt)', 'file=(<WINDOWS_PATH>)\n'],
+    ['file=C:\\Users\\alice\\project\\out.txt status=failed', 'file=<WINDOWS_PATH> status=failed\n']
+  ];
+
+  for (const [input, expected] of cases) {
+    assert.equal(normalizeText(input, config), expected);
+  }
+});
