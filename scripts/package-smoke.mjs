@@ -25,6 +25,27 @@ function run(command, args, options = {}) {
 }
 
 try {
+  const publish = spawnSync('npm', ['publish', '--dry-run', '--json', '--ignore-scripts'], {
+    cwd: repositoryRoot,
+    encoding: 'utf8'
+  });
+  assert.equal(
+    publish.status,
+    0,
+    `npm publish --dry-run --json --ignore-scripts failed\nstdout:\n${publish.stdout}\nstderr:\n${publish.stderr}`
+  );
+  assert.doesNotMatch(
+    publish.stderr,
+    /bin\[testgold\].*invalid and removed/i,
+    `npm publish normalization removed the testgold executable:\n${publish.stderr}`
+  );
+  const publishReport = JSON.parse(publish.stdout);
+  const publishedPackage = publishReport[packageMetadata.name] ?? publishReport;
+  assert.ok(
+    publishedPackage.files.some(({ path: publishedPath }) => publishedPath === 'dist/src/cli.js'),
+    'npm publish dry-run did not include dist/src/cli.js'
+  );
+
   const packOutput = run('npm', [
     'pack',
     repositoryRoot,

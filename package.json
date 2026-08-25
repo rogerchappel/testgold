@@ -4,7 +4,7 @@
   "description": "Framework-agnostic golden fixture manager for deterministic CLI and library tests.",
   "type": "module",
   "bin": {
-    "testgold": "./dist/src/cli.js"
+    "testgold": "dist/src/cli.js"
   },
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
