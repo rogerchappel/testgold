@@ -104,16 +104,18 @@ function parseCompareOptions(argv: string[]): CliOptions {
 }
 
 function printHelp(): void {
-  console.log('testgold ' + version + '\\n\\n' +
-    'Usage:\\n' +
-    '  testgold compare --actual <path> --golden <path> [options]\\n\\n' +
-    'Options:\\n' +
-    '  --accept            Write the normalized actual output to the golden file.\\n' +
-    '  --config <path>     JSON config with scrubbers and JSON normalization mode.\\n' +
-    '  --format <mode>     auto, text, or json. Defaults to auto.\\n' +
-    '  --summary-json      Print only a machine-readable JSON summary to stdout.\\n' +
-    '  -h, --help          Show this help.\\n' +
-    '  -v, --version       Show version.\\n');
+  console.log(`testgold ${version}
+
+Usage:
+  testgold compare --actual <path> --golden <path> [options]
+
+Options:
+  --accept            Write the normalized actual output to the golden file.
+  --config <path>     JSON config with scrubbers and JSON normalization mode.
+  --format <mode>     auto, text, or json. Defaults to auto.
+  --summary-json      Print only a machine-readable JSON summary to stdout.
+  -h, --help          Show this help.
+  -v, --version       Show version.`);
 }
 
 main().then((code) => {
