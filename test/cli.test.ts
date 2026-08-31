@@ -8,6 +8,30 @@ import path from 'node:path';
 
 const execFileAsync = promisify(execFile);
 
+const expectedHelp = `testgold 0.1.0
+
+Usage:
+  testgold compare --actual <path> --golden <path> [options]
+
+Options:
+  --accept            Write the normalized actual output to the golden file.
+  --config <path>     JSON config with scrubbers and JSON normalization mode.
+  --format <mode>     auto, text, or json. Defaults to auto.
+  --summary-json      Print only a machine-readable JSON summary to stdout.
+  -h, --help          Show this help.
+  -v, --version       Show version.
+`;
+
+for (const helpArgument of ['--help', 'help']) {
+  test(`CLI renders formatted help for ${helpArgument}`, async () => {
+    const result = await execFileAsync('node', ['dist/src/cli.js', helpArgument]);
+
+    assert.equal(result.stdout, expectedHelp);
+    assert.equal(result.stderr, '');
+    assert.equal(result.stdout.includes('\\n'), false);
+  });
+}
+
 test('CLI returns JSON summary for passing fixture', async () => {
   const result = await execFileAsync('node', [
     'dist/src/cli.js',
