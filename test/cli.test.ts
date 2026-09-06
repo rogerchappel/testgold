@@ -2,13 +2,16 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
-import { mkdtemp, writeFile } from 'node:fs/promises';
+import { cp, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const execFileAsync = promisify(execFile);
+const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+const packageMetadata = JSON.parse(await readFile(path.join(repositoryRoot, 'package.json'), 'utf8')) as { version: string };
 
-const expectedHelp = `testgold 0.1.0
+const expectedHelp = `testgold ${packageMetadata.version}
 
 Usage:
   testgold compare --actual <path> --golden <path> [options]
@@ -21,6 +24,18 @@ Options:
   -h, --help          Show this help.
   -v, --version       Show version.
 `;
+
+test('CLI version follows package metadata', async (t) => {
+  const probeRoot = await mkdtemp(path.join(tmpdir(), 'testgold-cli-version-'));
+  t.after(() => rm(probeRoot, { recursive: true, force: true }));
+  await cp(path.join(repositoryRoot, 'dist', 'src'), path.join(probeRoot, 'dist', 'src'), { recursive: true });
+  await writeFile(path.join(probeRoot, 'package.json'), JSON.stringify({ type: 'module', version: '0.1.1' }));
+
+  const result = await execFileAsync('node', [path.join(probeRoot, 'dist', 'src', 'cli.js'), '--version']);
+
+  assert.equal(result.stdout.trim(), '0.1.1');
+  assert.equal(result.stderr, '');
+});
 
 for (const helpArgument of ['--help', 'help']) {
   test(`CLI renders formatted help for ${helpArgument}`, async () => {
