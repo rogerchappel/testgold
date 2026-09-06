@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { readFileSync } from 'node:fs';
 import { parseArgs } from 'node:util';
 import { compareGolden } from './golden.js';
 import { renderSummary } from './summary.js';
@@ -14,7 +15,9 @@ type CliOptions = {
   help: boolean;
 };
 
-const version = '0.1.0';
+const { version } = JSON.parse(
+  readFileSync(new URL('../../package.json', import.meta.url), 'utf8')
+) as { version: string };
 
 export async function main(argv = process.argv.slice(2)): Promise<number> {
   const command = argv[0];

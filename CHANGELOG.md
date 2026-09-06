@@ -9,6 +9,7 @@ format and uses semantic versioning when versioned releases are published.
 
 ### Fixed
 
+- Derive CLI version and help output from package metadata so release version bumps cannot leave them stale.
 - Preserve the `testgold` executable when npm normalizes package metadata for publishing.
 - Keep `--summary-json` stdout parseable on mismatches by writing the unified diff to stderr.
 - Align the published CLI, JavaScript, and TypeScript entrypoints with the compiled package layout.
